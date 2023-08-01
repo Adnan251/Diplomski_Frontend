@@ -1,13 +1,87 @@
-body {
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+:root {
+  --primary: #242424;
+  --secondary: #A6F26B;
+  --white: #ffffff;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+h1,h2,h3,h4,h5,h6 {
+  font-family: 'Poppins', sans-serif;
+}
+
+p {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+}
+
+label {
+  font-size: 14px;
+  color: #494949;
+  font-family: 'Open Sans', sans-serif;
+}
+
+input {
+  border-radius: 10px;
+  border: 1px solid #E8E8E8;
+  padding: 14px;
+  color: var(--primary);
+  width: 100%;
+  font-family: 'Open Sans', sans-serif;
+}
+
+input::placeholder {
+  color: #A6A6A6;
+}
+
+input:focus {
+  border-color: var(--primary);
+}
+
+.button {
+  padding: 14px 36px;
+  border-radius: 10px;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.button.primary {
+  background-color: var(--secondary);
+  color: var(--primary);
+  transition: 0.2s all;
+}
+
+.button.primary:hover {
+  background-color: var(--primary);
+  color: var(--white);
+}
+
+.button.secondary {
+  border: 1px solid var(--white);
+  color: var(--white);
+  transition: 0.2s all;
+}
+
+.button.secondary:hover {
+  background-color: var(--white);
+  color: var(--primary);
+}
+
+/* HEADER */
+
+.header {
+  background-image: url(../src/assets/home-background.png);
+  background-size: cover;
+  background-position: center;
 }
