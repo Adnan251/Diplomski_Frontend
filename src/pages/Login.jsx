@@ -1,8 +1,12 @@
 import React, {useState} from 'react';
 import Input from '../components/Input'
 import Button from '../components/Button';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -13,6 +17,27 @@ const Login = () => {
   const handlePassword = (event) => {
     setPassword(event.target.value);
   }
+
+  const handleLogin = async () => {
+    try {
+      const response = await axios.post('http://localhost:5000/api/users/login', {
+        email,
+        password,
+      });
+  
+      const token = response.data.token;
+      const userId = response.data._id;
+      localStorage.setItem("token", `Bearer ${token}`);
+      localStorage.setItem("user_id", userId);
+
+      setEmail('');
+      setPassword('');
+      navigate('/dashboard');
+    } catch (error) {
+      // Handle error here
+      console.error('Registration failed:', error);
+    }
+  };
 
   return (
     <div className='bg-white w-full min-h-[100vh] h-full flex justify-center'>
@@ -38,6 +63,7 @@ const Login = () => {
           label="Login"
           type="primary"
           additionalClass="w-full"
+          onClick={handleLogin}
         />
       </div>
     </div>

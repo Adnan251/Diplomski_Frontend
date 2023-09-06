@@ -1,12 +1,13 @@
 import React from 'react'
 import Button from '../components/Button'
+import { home_background } from '../assets'
 
 const Landing = () => {
   return (
     <div>
       <div className='min-h-[100vh] w-full flex flex-col justify-between px-[9vw] header'>
         <div className='flex justify-between w-full mt-[40px]'>
-          <span className='text-[24px] font-bold font-poppins text-white'>Logo</span>
+          <span className='text-[24px] font-bold font-poppins text-white'>HomeNet</span>
           <div className='flex gap-[12px]'>
             <Button
               label="Login"

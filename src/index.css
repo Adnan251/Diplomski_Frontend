@@ -13,6 +13,30 @@
   --white: #ffffff;
 }
 
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-button {
+  width: 0px;
+  height: 0px;
+}
+::-webkit-scrollbar-thumb {
+  background: #e1e1e1;
+  border: 0px none #ffffff;
+  border-radius: 50px;
+}
+
+::-webkit-scrollbar-track {
+  background: #737373;
+  border: 0px none #ffffff;
+  border-radius: 50px;
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 h1,h2,h3,h4,h5,h6 {
@@ -84,4 +108,143 @@ input:focus {
   background-image: url(../src/assets/home-background.png);
   background-size: cover;
   background-position: center;
+}
+
+.main-button {
+  background-color: #505050;
+  color: white;
+  font-weight: 600;
+  font-size: 16px;
+  padding: 16px 40px;
+  width: fit-content;
+  transition: 0.3s all;
+}
+
+.main-button:hover {
+  background-color: #747373;
+}
+
+.active.main-button {
+  background-color: #242424;
+}
+
+.button {
+  padding: 16px 32px;
+  border-radius: 16px;
+}
+
+.logout-button {
+  border: 1px solid #FF4D4D;
+  transition: 0.3s all;
+}
+
+.logout-button:hover {
+  background-color: #FF4D4D;
+}
+
+
+/* HOUSES */
+
+.house, .rooms, .device {
+  border-radius: 16px;
+  padding: 18px;
+  background-color: #2F2F2F;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.house:hover, .rooms:hover, .device:hover {
+  outline: 1px solid var(--white);
+}
+
+.add-button {
+  width: 100%;
+  padding: 33px;
+  border: 1px solid #505050;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s all;
+}
+
+.add-button:hover {
+  background-color: #505050;
+  cursor: pointer;
+}
+
+/* MODAL */
+
+.modal {
+  width: 100%;
+  min-height: 100vh;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(15px);
+  background-color: rgba(0,0,0,0.15);
+}
+
+.light-color {
+  position: relative;
+  cursor: pointer;
+}
+
+.light-color::before {
+  content: 'Selected';
+  border-radius: 50px;
+  background-color: white;
+  color: #242424;
+  padding: 3px 12px;
+  position: absolute;
+  top: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: none;
+  font-size: 14px;
+}
+
+.selected-color::before {
+  display: flex;
+}
+
+.tempstate {
+  animation: jumpin 0.5s infinite alternate;
+  position: relative;
+  transition: 0.3s all;
+}
+
+@keyframes jumpin {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.2);
+  }
+}
+
+table {
+  text-align: left;
+  color: white;
+}
+
+table thead {
+  background-color: var(--primary);
+}
+
+table th,td {
+  padding: 12px;
+}
+
+.good-status {
+  background-color: greenyellow;
+}
+
+.bad-status {
+  background-color: red;
 }

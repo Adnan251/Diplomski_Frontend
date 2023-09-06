@@ -2,12 +2,16 @@ import React, {useState} from 'react';
 import Input from '../components/Input'
 import Button from '../components/Button';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
+  const navigate = useNavigate();
+
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+
 
   const handleUsername = (event) => {
     setUsername(event.target.value);
@@ -25,21 +29,29 @@ const Register = () => {
     setConfirmPassword(event.target.value);
   }
 
-  const handleRegistration = () => {
-    axios
-      .post('/api/users/register', {
+  const handleRegistration = async () => {
+    try {
+      const response = await axios.post('http://localhost:5000/api/users/register', {
         username,
         email,
         password,
         confirmPassword,
-      })
-      .then((response) => {
-        console.log(response.data.message);
-      })
-      .catch((error) => {
-        console.error('Error registering user:', error);
       });
+  
+      const token = response.data.token;
+      localStorage.setItem("token", `Bearer ${token}`);
+
+      setUsername('');
+      setEmail('');
+      setPassword('');
+      setConfirmPassword('');
+      navigate('/dashboard');
+    } catch (error) {
+      // Handle error here
+      console.error('Registration failed:', error);
+    }
   };
+
 
   return (
     <div className='bg-white w-full min-h-[100vh] h-full flex justify-center'>
