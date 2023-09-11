@@ -3,6 +3,8 @@ import Input from '../components/Input'
 import Button from '../components/Button';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+const config = require('../config');
+const { app: { host, port} } = config;
 
 const Register = () => {
   const navigate = useNavigate();
@@ -31,7 +33,7 @@ const Register = () => {
 
   const handleRegistration = async () => {
     try {
-      const response = await axios.post('http://localhost:5000/api/users/register', {
+      const response = await axios.post(`https://${host}:${port}/api/users/register`, {
         username,
         email,
         password,

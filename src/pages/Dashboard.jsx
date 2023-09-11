@@ -6,6 +6,8 @@ import Button from '../components/Button';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+const config = require('../config');
+const { app: { host, port} } = config;
 
 const Dashboard = () => {
   const [houseList, setHouseList] = useState([]);
@@ -80,12 +82,11 @@ const Dashboard = () => {
     setRoomType(event.target.value);
   }
 
-
   // Add House Function
   const addRoom = async () => {
     try {
       const response = await axios.post(
-        'http://localhost:5000/api/rooms/add',
+        `https://${host}:${port}/api/rooms/add`,
         { 
           room_name: newRoomName,
           floor: floor,
@@ -136,7 +137,7 @@ const Dashboard = () => {
       setCurrentHouseId(index);
       console.log(index);
       const response = await axios.post(
-        'http://localhost:5000/api/rooms/getAll',
+        `https://${host}:${port}/api/rooms/getAll`,
         { house_id: index }, // Send house_id in the request body
         {
           headers: {
@@ -167,7 +168,7 @@ const Dashboard = () => {
 
     try {
       const response = await axios.delete(
-        'http://localhost:5000/api/rooms/delet',
+        `https://${host}:${port}/api/rooms/delet`,
         {
           data: {
             id: currentRoomManageId,
@@ -234,7 +235,7 @@ const Dashboard = () => {
   const updateRoom = async (updatedRoomData) => {
     try {
       const response = await axios.put(
-        `http://localhost:5000/api/rooms/update`,
+        `https://<<<${host}:${port}/api/rooms/update`,
         updatedRoomData,
         {
           headers: {
@@ -341,7 +342,7 @@ const Dashboard = () => {
   const addHouse = async () => {
     try {
       const response = await axios.post(
-        'http://localhost:5000/api/houses/add',
+        `https://${host}:${port}/api/houses/add`,
         { 
           house_name: newHouseName,
           address: address,
@@ -423,7 +424,7 @@ const Dashboard = () => {
     console.log(currentHouseManageId);
     try {
       const response = await axios.delete(
-        'http://localhost:5000/api/houses/delet',
+        `https://${host}:${port}/api/houses/delet`,
         {
           data: {
             password: confirmPasswordHouse,
@@ -477,7 +478,7 @@ const Dashboard = () => {
   const updateHouse = async (updatedHouseData) => {
     try {
       const response = await axios.put(
-        `http://localhost:5000/api/houses/update`,
+        `https://${host}:${port}/api/houses/update`,
         updatedHouseData,
         {
           headers: {
@@ -539,7 +540,7 @@ const Dashboard = () => {
   // Fetching House List
   const fetchHouseList = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/houses/getAll', {
+      const response = await axios.get(`https://${host}:${port}/api/houses/getAll`, {
         headers: {
           Authorization: localStorage.getItem("token")
         }
@@ -570,7 +571,7 @@ const Dashboard = () => {
     try {
       
       const response = await axios.post(
-        'http://localhost:5000/api/logs/getAll',
+        `https://${host}:${port}/api/logs/getAll`,
         { date: formattedDate }, // Send house_id in the request body
         {
           headers: {
@@ -593,7 +594,7 @@ const Dashboard = () => {
       setCurrentRoom(room_name);
       setCurrentRoomId(room_id);
       const response = await axios.post(
-        'http://localhost:5000/api/devices/getAll',
+        `https://${host}:${port}/api/devices/getAll`,
         { room_id: room_id }, // Send house_id in the request body
         {
           headers: {
@@ -651,7 +652,7 @@ const Dashboard = () => {
   const addDevice = async () => {
     try {
       const response = await axios.post(
-        'http://localhost:5000/api/devices/add',
+        `https://${host}:${port}/api/devices/add`,
         { 
           device_name: newDeviceName,
           host: newDeviceHost,
@@ -717,7 +718,7 @@ const Dashboard = () => {
   
     try {
       const response = await axios.delete(
-        'http://localhost:5000/api/devices/delet',
+        `https://${host}:${port}/api/devices/delet`,
         {
           data: {
             id: currentDeviceManageId,
@@ -790,7 +791,7 @@ const Dashboard = () => {
   const updateDevice = async (deviceId, updatedDeviceData) => {
     try {
       const response = await axios.put(
-        `http://localhost:5000/api/devices/update`,
+        `https://${host}:${port}/api/devices/update`,
         updatedDeviceData,
         {
           headers: {
@@ -890,7 +891,7 @@ const Dashboard = () => {
   const handleUnlockDoor = async () => {
     try {
       const response = await axios.post(
-        'http://localhost:5000/api/devices/sendMessage',
+        `https://${host}:${port}/api/devices/sendMessage`,
         { 
           device_id : currentDoorId,
           message: "unlock"
@@ -936,7 +937,7 @@ const Dashboard = () => {
   const handleLockDoor = async () => {
     try {
       const response = await axios.post(
-        'http://localhost:5000/api/devices/sendMessage',
+        `https://${host}:${port}/api/devices/sendMessage`,
         { 
           device_id : currentDoorId,
           message: "lock"
@@ -984,7 +985,7 @@ const Dashboard = () => {
 
     try {
       const response = await axios.post(
-        'http://localhost:5000/api/devices/sendMessage',
+        `https://${host}:${port}/api/devices/sendMessage`,
         { 
           device_id : currentLightId,
           message: color
@@ -1038,7 +1039,7 @@ const Dashboard = () => {
   const checkCurrentTemp = async () => {
     try {
       const response = await axios.post(
-        'http://localhost:5000/api/devices/sendMessage',
+        `https://${host}:${port}/api/devices/sendMessage`,
         { 
           device_id : currentThermostatId,
           message: "read"
@@ -1067,7 +1068,7 @@ const Dashboard = () => {
     try {
 
       const response = await axios.post(
-        'http://localhost:5000/api/devices/sendMessage',
+        `https://${host}:${port}/api/devices/sendMessage`,
         { 
           device_id : currentThermostatId,
           message: newThermostatTemperature < currentThermostatTemperature ? "cool" : "heat"
@@ -1097,7 +1098,7 @@ const Dashboard = () => {
   const turnOffDoor = async () => {
     try {
       const response = await axios.post(
-        'http://localhost:5000/api/devices/sendMessage',
+        `https://${host}:${port}/api/devices/sendMessage`,
         { 
           device_id : currentDoorId,
           message: "doorOff"
@@ -1119,7 +1120,7 @@ const Dashboard = () => {
   const turnOffLight = async () => {
     try {
       const response = await axios.post(
-        'http://localhost:5000/api/devices/sendMessage',
+        `https://${host}:${port}/api/devices/sendMessage`,
         { 
           device_id : currentLightId,
           message: "lightOff"
@@ -1141,7 +1142,7 @@ const Dashboard = () => {
   const turnOffThermostat = async () => {
     try {
       const response = await axios.post(
-        'http://localhost:5000/api/devices/sendMessage',
+        `https://${host}:${port}/api/devices/sendMessage`,
         { 
           device_id : currentThermostatId,
           message: "tempOff"
