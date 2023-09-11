@@ -33,7 +33,7 @@ const Register = () => {
 
   const handleRegistration = async () => {
     try {
-      const response = await axios.post(`https://${host}:${port}/api/users/register`, {
+      const response = await axios.post(`https://${host}/api/users/register`, {
         username,
         email,
         password,
