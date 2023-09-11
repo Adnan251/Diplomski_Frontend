@@ -4,7 +4,7 @@ import Button from '../components/Button';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 const config = require('../config');
-const { app: { host, port} } = config;
+const { app: { host} } = config;
 
 const Register = () => {
   const navigate = useNavigate();

@@ -7,7 +7,7 @@ import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 const config = require('../config');
-const { app: { host, port} } = config;
+const { app: { host} } = config;
 
 const Dashboard = () => {
   const [houseList, setHouseList] = useState([]);
@@ -235,7 +235,7 @@ const Dashboard = () => {
   const updateRoom = async (updatedRoomData) => {
     try {
       const response = await axios.put(
-        `https://<<<${host}:${port}/api/rooms/update`,
+        `https://${host}/api/rooms/update`,
         updatedRoomData,
         {
           headers: {
